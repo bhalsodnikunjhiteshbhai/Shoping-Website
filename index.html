@@ -2,372 +2,1040 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Shoping Website</title>
-  <meta name="description" content="Shoping Website">
-  <meta name="keywords" content="Shoping Website, Shopping, Shop,">
-  
-  <!-- Open Graph for social sharing -->
-  <meta property="og:title" content="Shoping Website">
-  <meta property="og:description" content="Shoping Website.">
+  <title>Shopping Website - Top Deals</title>
+  <meta name="description" content="Discover handpicked products and top deals at our shopping website.">
+  <meta name="keywords" content="shopping, products, deals, shoes, home decor, fashion">
+
+  <meta property="og:title" content="Shopping Website">
+  <meta property="og:description" content="Discover handpicked products and top deals.">
   <meta property="og:type" content="website">
 
   <style>
-    /* Simple, responsive, SEO-friendly single-page affiliate shop
-       - Responsive grid
-       - Accessible controls
-       - Lightweight CSS only (no external libs)
-    */
-    :root{
-      --accent:#0b74de;
-      --muted:#6b7280;
-      --bg:#f7f7fb;
-      --card:#ffffff;
-      --radius:12px;
-      --shadow: 0 6px 18px rgba(16,24,40,0.06);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    :root {
+      --accent: #0b74de;
+      --accent-dark: #075bb0;
+      --muted: #6b7280;
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --border: #e6e9ef;
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", Roboto, Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.4}
-    .container{max-width:1100px;margin:28px auto;padding:0 18px}
 
-    header{display:flow-root;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7cc3ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    h1{font-size:1.20rem;margin:0}
-    nav{display:flex;gap:10px}
-    a.btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    * {
+      box-sizing: border-box;
+    }
 
-    /* hero */
-    .hero{margin:18px 0;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(11,116,222,0.08),transparent)}
-    .hero-grid{display:flex;gap:20px;align-items:center}
-    .hero .lead{font-size:1rem;color:var(--muted)}
+    html {
+      scroll-behavior: smooth;
+    }
 
-    /* search/filter */
-    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0}
-    .search{flex:1;min-width:180px}
-    input[type=search]{width:100%;padding:12px;border-radius:10px;border:1px solid #e6e9ef}
-    .select{padding:12px;border-radius:10px;border:1px solid #e6e9ef}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+      line-height: 1.4;
+    }
 
-    /* products grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:600px){.grid{grid-template-columns:1fr}}
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
-    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
-    .media{height:180px;border-radius:10px;overflow:hidden;background:#eef2ff;display:flex;align-items:center;justify-content:center}
-    .media img{max-width:100%;max-height:100%;object-fit:contain}
-    .title{font-weight:700}
-    .price{font-weight:700;color:var(--accent)}
-    .muted{color:var(--muted);font-size:0.9rem}
-    .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 18px;
+    }
 
-    .actions{display:flex;gap:8px}
-    .affiliate-btn{flex:1;padding:10px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),#4bb0ff);color:white;text-decoration:none;text-align:center;font-weight:700}
-    .secondary{padding:10px;border-radius:10px;border:1px solid #e6e9ef;background:white}
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
 
-    footer{margin:36px 0;text-align:center;color:var(--muted);font-size:0.9rem}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-    /* accessibility focus styles */
-    a:focus,button:focus,input:focus{outline:3px solid rgba(11,116,222,0.18);outline-offset:2px}
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #7cc3ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+    }
 
-    /* small helpers */
-    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:#eef2ff;font-weight:600;color:var(--accent);font-size:0.75rem}
+    h1 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    /* Hero */
+    .hero {
+      margin: 18px 0;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(
+        180deg,
+        rgba(11, 116, 222, 0.1),
+        transparent
+      );
+    }
+
+    .hero h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .hero .lead {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: end;
+      margin: 20px 0;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .control-group {
+      min-width: 150px;
+    }
+
+    .control-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      outline: none;
+    }
+
+    input[type="search"]:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(11, 116, 222, 0.12);
+    }
+
+    /* Products */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 14px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(16, 24, 40, 0.12);
+    }
+
+    .media {
+      height: 210px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .title {
+      font-weight: 700;
+      min-height: 44px;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .affiliate-btn {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 0;
+      background: linear-gradient(90deg, var(--accent), #4bb0ff);
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .affiliate-btn:hover {
+      background: linear-gradient(90deg, var(--accent-dark), #2699ee);
+    }
+
+    .secondary {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .secondary:hover {
+      background: #f8fafc;
+    }
+
+    .no-products {
+      grid-column: 1 / -1;
+      background: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: var(--radius);
+      color: var(--muted);
+    }
 
     /* Modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(2, 6, 23, 0.5);
-  backdrop-filter: blur(3px);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.18s ease, visibility 0.18s ease;
-  z-index: 9999;
-}
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(2, 6, 23, 0.55);
+      backdrop-filter: blur(3px);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.18s ease, visibility 0.18s ease;
+      z-index: 9999;
+    }
 
-.modal.open {
-  visibility: visible;
-  opacity: 1;
-}
+    .modal.open {
+      visibility: visible;
+      opacity: 1;
+    }
 
-.modal-card {
-  background: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  max-width: 720px;
-  width: 92%;
-  box-sizing: border-box;
-}
+    .modal-card {
+      position: relative;
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
 
-.modal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
+    .modal-close {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: #f1f5f9;
+      cursor: pointer;
+      font-size: 18px;
+      z-index: 2;
+    }
 
-@media (max-width: 700px) {
-  .modal-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 10px;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      padding-right: 30px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    /* Footer */
+    footer {
+      margin: 40px 0 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image {
+        height: 240px;
+      }
+
+      .meta {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .actions {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 18px 12px;
+      }
+
+      .hero {
+        padding: 18px;
+      }
+
+      .controls {
+        display: block;
+      }
+
+      .search,
+      .control-group {
+        width: 100%;
+        margin-bottom: 12px;
+      }
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(11, 116, 222, 0.18);
+      outline-offset: 2px;
+    }
   </style>
 </head>
+
 <body>
+
   <div class="container">
+
+    <!-- Header -->
     <header>
       <div class="brand">
         <div class="logo">SW</div>
         <div>
-          <h1>Shoping Website</h1>
-          
+          <h1>Shopping Website</h1>
+          <div class="muted">Best products and deals</div>
         </div>
       </div>
-      <nav>
-      
-      </nav>
     </header>
 
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-grid">
-        <div>
-          <h2 id="hero-heading">Top deals — handpicked for you</h2>
-          <p class="lead">Shoping  Website Product Click "Buy" to open the retailer page and complete purchase.</p>
-        
-        </div>
-        
-      </div>
+    <!-- Hero -->
+    <section class="hero">
+      <h2>Top Deals — Handpicked For You</h2>
+      <p class="lead">
+        Discover useful products, fashion, home decor and more.
+        Click "Buy" to visit the retailer and complete your purchase.
+      </p>
     </section>
 
-    <!-- Search & Filters -->
-    <section class="controls" aria-label="shop controls">
+    <!-- Search and filters -->
+    <section class="controls" aria-label="Shop controls">
+
       <div class="search">
-        <label for="q" class="muted" style="display:block;margin-bottom:6px">Search products</label>
-        <input id="q" type="search" placeholder="Search shoes, boots, sneakers..." aria-label="Search products">
+        <label for="q" class="control-label">
+          Search products
+        </label>
+        <input
+          id="q"
+          type="search"
+          placeholder="Search shoes, flowers, watches..."
+          aria-label="Search products"
+        >
       </div>
-      <div>
-        <label for="category" class="muted" style="display:block;margin-bottom:6px">Category</label>
-        <select id="category" class="select" aria-label="Filter by category">
+
+      <div class="control-group">
+        <label for="category" class="control-label">
+          Category
+        </label>
+
+        <select id="category" aria-label="Filter by category">
           <option value="all">All categories</option>
           <option value="men">Men</option>
           <option value="women">Women</option>
-      
         </select>
       </div>
-      <div>
-        <label for="sort" class="muted" style="display:block;margin-bottom:6px">Sort</label>
-        <select id="sort" class="select" aria-label="Sort products">
+
+      <div class="control-group">
+        <label for="sort" class="control-label">
+          Sort
+        </label>
+
+        <select id="sort" aria-label="Sort products">
           <option value="popular">Most popular</option>
           <option value="price_asc">Price: Low → High</option>
           <option value="price_desc">Price: High → Low</option>
         </select>
       </div>
+
     </section>
 
-    <!-- Products list (dynamically generated) -->
-    <main id="products">
+    <!-- Products -->
+    <main>
       <div id="grid" class="grid" aria-live="polite"></div>
     </main>
 
-    <footer id="about">
-      © <span id="2026"></span> Shoping Website.
+    <!-- Footer -->
+    <footer>
+      © <span id="year"></span> Shopping Website.
     </footer>
+
   </div>
 
-  <!-- Simple product modal -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-card" role="document">
-      <button id="close-modal" aria-label="Close" style="float:right;border:0;background:none;font-size:18px">✕</button>
+  <!-- Modal -->
+  <div
+    id="modal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
+    <div class="modal-card">
+
+      <button
+        id="close-modal"
+        class="modal-close"
+        aria-label="Close"
+        type="button"
+      >
+        ✕
+      </button>
+
       <div id="modal-content"></div>
+
     </div>
   </div>
 
   <script>
-    // Sample product data — replace these with your actual affiliate product list
-    // Each product should include: id, title, description, price, image, category, affiliateUrl, merchant
-     const PRODUCTS = [
-     {id:2,title:'Artificial Red Lily Flower for Home Decor  for women',desc:'',price:127,img:'https://images.meesho.com/images/products/519464912/ravc1_512.avif?width=512',category:'women',affiliateUrl:'https://www.meesho.com/af_invite/130369250:instagram_stories:1749917?p_id=519464912&ext_id=8l9xow&utm_source=instagram_stories',merchant:'Prodect 2'},
-      {id:3,title:'New & Hit Trendy Flora Planet for women',desc:'',price:146,img:'https://images.meesho.com/images/products/447038782/zlhzt_512.avif?width=512',category:'women',affiliateUrl:'https://www.meesho.com/af_invite/130369250:instagram_stories:1623260?p_id=447038782&ext_id=7e5lby&utm_source=instagram_stories',merchant:'Prodect 3'},
-      {id:4,title:'3 pcs beautiful vase for home decor for women',desc:'',price:514,img:'https://images.meesho.com/images/products/431129895/rwoze.jpg',category:'women',affiliateUrl:'https://affiliate.meesho.com/collection/MTQzMTk4ODo6Ojo6Om5vcm1hbA==',merchant:'Prodect 4'},
-      {id:5,title:'HRX Running Shoes For Men',desc:'',price:710,img:'https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/a/8/l/-original-imahgndj6dnk93z5.jpeg?q=70&amp;crop=false',category:'men',affiliateUrl:'https://fktr.in/jyoAmwV',merchant:'Prodect 5'},
-      {id:6,title:'NEW ATTRACTIVE MULTICOLOR BUTTERFLY DESIGN WATCH & 2 BRACELET COMBO FOR GIRLS & WOMEN',desc:'',price:184,img:'https://images.meesho.com/images/products/551869055/u4bg9.jpg',category:'women',affiliateUrl:'https://affiliate.meesho.com/collection/MTMzODU2Mzo6Ojo6Om5vcm1hbA==',merchant:'Prodect 6'},
-      {id:7,title:'Brass Rose Akhand Jyoti. Home and Offic diwali gift akhand Jyoti ( Set of 2)',desc:'',price:254,img:'https://images.meesho.com/images/products/612372981/phfxj_512.avif?width=512',category:'women',affiliateUrl:'https://affiliate.meesho.com/collection/MTI2NjU0Nzo6Ojo6Om5vcm1hbA==',merchant:'Prodect 7'},
-      {id:8,title:'Squash Mens light weight and stylish slipper flip flops for men',desc:'',price:204,img:'https://images.meesho.com/images/products/613318881/cta6d_512.webp',category:'men',affiliateUrl:'https://affiliate.meesho.com/collection/OTgxOTkxOjo6Ojo6bm9ybWFs',merchant:'Prodect 8'},
-      {id:9,title:'Dry Fruit Cutter and Slicer',desc:'',price:104,img:'	https://images.meesho.com/images/products/79734334/l7ub5_512.avif?width=512',category:'women',affiliateUrl:'https://affiliate.meesho.com/collection/OTg2NjE4Ojo6Ojo6bm9ybWFs',merchant:'Prodect 9'},
-      {id:10,title:'Appoxy Trendy slippers for men Walking ',desc:'',price:314,img:'https://images.meesho.com/images/products/582168097/fsu2p_512.avif?width=512',category:'men',affiliateUrl:'https://affiliate.meesho.com/collection/MTAxNDIzOTo6Ojo6Om5vcm1hbA==',merchant:'Prodect 10'},
-      {id:11,title:'SQUASH MEN SLIPPERS FLIPFLOPS LIGHTWEIGHT STYLISH QUALITYFULL SOLE SLIPPERS FOR MEN',desc:'',price:195,img:'https://images.meesho.com/images/products/630154435/eoxai_512.avif?width=512',category:'men',affiliateUrl:'https://affiliate.meesho.com/collection/MTExODMxMTo6Ojo6Om5vcm1hbA==',merchant:'Prodect 11'},
-      
+
+    /* =========================
+       PRODUCT DATA
+    ========================= */
+
+    const PRODUCTS = [
+
+      {
+        id: 2,
+        title: "Artificial Red Lily Flower for Home Decor for Women",
+        desc: "Beautiful artificial flower decoration for your home.",
+        price: 127,
+        img: "https://images.meesho.com/images/products/519464912/ravc1_512.avif?width=512",
+        category: "women",
+        affiliateUrl: "https://www.meesho.com/af_invite/130369250:instagram_stories:1749917?p_id=519464912&ext_id=8l9xow&utm_source=instagram_stories",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 3,
+        title: "New & Hit Trendy Flora Planet for Women",
+        desc: "Trendy decorative product for your home.",
+        price: 146,
+        img: "https://images.meesho.com/images/products/447038782/zlhzt_512.avif?width=512",
+        category: "women",
+        affiliateUrl: "https://www.meesho.com/af_invite/130369250:instagram_stories:1623260?p_id=447038782&ext_id=7e5lby&utm_source=instagram_stories",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 4,
+        title: "3 Pcs Beautiful Vase for Home Decor",
+        desc: "Elegant decorative vase set for your home.",
+        price: 514,
+        img: "https://images.meesho.com/images/products/431129895/rwoze.jpg",
+        category: "women",
+        affiliateUrl: "https://affiliate.meesho.com/collection/MTQzMTk4ODo6Ojo6Om5vcm1hbA==",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 5,
+        title: "HRX Running Shoes for Men",
+        desc: "Lightweight and stylish running shoes for men.",
+        price: 710,
+        img: "https://rukminim2.flixcart.com/image/832/832/xif0q/shoe/a/8/l/-original-imahgndj6dnk93z5.jpeg?q=70&crop=false",
+        category: "men",
+        affiliateUrl: "https://fktr.in/jyoAmwV",
+        merchant: "Flipkart"
+      },
+
+      {
+        id: 6,
+        title: "Multicolor Butterfly Design Watch & 2 Bracelet Combo",
+        desc: "Attractive watch and bracelet combo for girls and women.",
+        price: 184,
+        img: "https://images.meesho.com/images/products/551869055/u4bg9.jpg",
+        category: "women",
+        affiliateUrl: "https://affiliate.meesho.com/collection/MTMzODU2Mzo6Ojo6Om5vcm1hbA==",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 7,
+        title: "Brass Rose Akhand Jyoti Set of 2",
+        desc: "Traditional brass decorative diyas for home and office.",
+        price: 254,
+        img: "https://images.meesho.com/images/products/612372981/phfxj_512.avif?width=512",
+        category: "women",
+        affiliateUrl: "https://affiliate.meesho.com/collection/MTI2NjU0Nzo6Ojo6Om5vcm1hbA==",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 8,
+        title: "Squash Men's Lightweight Stylish Slippers",
+        desc: "Lightweight and comfortable slippers for men.",
+        price: 204,
+        img: "https://images.meesho.com/images/products/613318881/cta6d_512.webp",
+        category: "men",
+        affiliateUrl: "https://affiliate.meesho.com/collection/OTgxOTkxOjo6Ojo6bm9ybWFs",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 9,
+        title: "Dry Fruit Cutter and Slicer",
+        desc: "Useful kitchen tool for cutting and slicing dry fruits.",
+        price: 104,
+        img: "https://images.meesho.com/images/products/79734334/l7ub5_512.avif?width=512",
+        category: "women",
+        affiliateUrl: "https://affiliate.meesho.com/collection/OTg2NjE4Ojo6Ojo6bm9ybWFs",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 10,
+        title: "Appoxy Trendy Slippers for Men",
+        desc: "Comfortable walking slippers with a stylish design.",
+        price: 314,
+        img: "https://images.meesho.com/images/products/582168097/fsu2p_512.avif?width=512",
+        category: "men",
+        affiliateUrl: "https://affiliate.meesho.com/collection/MTAxNDIzOTo6Ojo6Om5vcm1hbA==",
+        merchant: "Meesho"
+      },
+
+      {
+        id: 11,
+        title: "Squash Men's Stylish Lightweight Slippers",
+        desc: "Quality lightweight sole slippers for men.",
+        price: 195,
+        img: "https://images.meesho.com/images/products/630154435/eoxai_512.avif?width=512",
+        category: "men",
+        affiliateUrl: "https://affiliate.meesho.com/collection/MTExODMxMTo6Ojo6Om5vcm1hbA==",
+        merchant: "Meesho"
+      }
+
     ];
 
-    const grid = document.getElementById('grid');
-    const q = document.getElementById('q');
-    const category = document.getElementById('category');
-    const sort = document.getElementById('sort');
-    const year = document.getElementById('year');
 
-    // Utility: format currency (INR default)
-    function formatCurrency(n){
-      return new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR'}).format(n);
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const grid = document.getElementById("grid");
+    const searchInput = document.getElementById("q");
+    const category = document.getElementById("category");
+    const sort = document.getElementById("sort");
+    const year = document.getElementById("year");
+
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modal-content");
+    const closeModalBtn = document.getElementById("close-modal");
+
+
+    /* =========================
+       CURRENCY
+    ========================= */
+
+    function formatCurrency(price) {
+      return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR"
+      }).format(price);
     }
 
-    // Render products to grid
-    function render(list){
-      grid.innerHTML = '';
-      list.forEach(p => {
-        const el = document.createElement('article');
-        el.className = 'card';
-        el.innerHTML = `
-          <div class="media">
-            <img loading="lazy" src="${p.img}" alt="${p.title}">
-          </div>
-          <div>
-            <div class="title">${p.title}</div>
-            <div class="muted" style="margin-top:6px">${p.desc}</div>
-          </div>
-          <div class="meta">
-            <div>
-              <div class="price">${formatCurrency(p.price)}</div>
-              <div class="muted">${p.merchant}</div>
-            </div>
-            <div style="min-width:160px">
-              <div class="actions">
-                <a class="affiliate-btn" href="${p.affiliateUrl}" target="_blank" rel="noopener noreferrer sponsored" data-id="${p.id}">Buy</a>
-                <button class="secondary" data-id="${p.id}" aria-haspopup="dialog">Details</button>
-              </div>
-            </div>
+
+    /* =========================
+       RENDER PRODUCTS
+    ========================= */
+
+    function render(products) {
+
+      grid.innerHTML = "";
+
+      if (products.length === 0) {
+
+        grid.innerHTML = `
+          <div class="no-products">
+            <h3>No products found</h3>
+            <p>Try another search term or category.</p>
           </div>
         `;
-        grid.appendChild(el);
-      });
 
-      // attach detail button listeners
-      document.querySelectorAll('.secondary').forEach(btn=>{
-        btn.addEventListener('click',()=>openModal(btn.dataset.id));
-      });
-
-      // track outbound clicks for analytics (basic)
-      document.querySelectorAll('.affiliate-btn').forEach(link=>{
-        link.addEventListener('click',e=>{
-          // simple tracking: send beacon to server or analytics endpoint
-          try{
-            navigator.sendBeacon('/track-click', JSON.stringify({productId:link.dataset.id,ts:Date.now()}));
-          }catch(err){/*ignore*/}
-        });
-      });
-    }
-
-    // Filter + search + sort logic
-    function filterAndRender(){
-      const term = q.value.trim().toLowerCase();
-      const cat = category.value;
-      const s = sort.value;
-      let list = PRODUCTS.slice();
-      if(cat!=='all') list = list.filter(p=>p.category===cat);
-      if(term) list = list.filter(p=> (p.title+" "+p.desc).toLowerCase().includes(term));
-      if(s==='price_asc') list.sort((a,b)=>a.price-b.price);
-      if(s==='price_desc') list.sort((a,b)=>b.price-a.price);
-      render(list);
-    }
-
-    // Modal
-    const modal = document.getElementById('modal');
-    const modalContent = document.getElementById('modal-content');
-    const closeModalBtn = document.getElementById('close-modal');
-    function openModal(id){
-      const p = PRODUCTS.find(x=>x.id==id);
-      if(!p) return;
-      modalContent.innerHTML = `
-        <div class="modal-grid">
-          <div>
-            <img src="${p.img}" alt="${p.title}" style="width:100%;border-radius:10px;object-fit:cover">
-          </div>
-          <div>
-            <h3 style="margin-top:0">${p.title}</h3>
-            <div class="muted">${p.merchant} • <strong>${formatCurrency(p.price)}</strong></div>
-            <p style="margin-top:12px">${p.desc}</p>
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <a class="affiliate-btn" href="${p.affiliateUrl}" target="_blank" rel="noopener noreferrer sponsored">Buy at ${p.merchant}</a>
-              <button class="secondary" id="share-link">Copy link</button>
-            </div>
-          </div>
-        </div>
-      `;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-
-      // copy link handler
-      document.getElementById('share-link').addEventListener('click',()=>{
-        navigator.clipboard.writeText(p.affiliateUrl).then(()=>{
-          alert('Affiliate link copied to clipboard');
-        });
-      });
-    }
-    function closeModal(){
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-    }
-    closeModalBtn.addEventListener('click',closeModal);
-    modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
-
-    // quick init
-    document.addEventListener('DOMContentLoaded',()=>{
-      year.textContent = new Date().getFullYear();
-      render(PRODUCTS);
-
-      // events
-      q.addEventListener('input',debounce(filterAndRender,250));
-      category.addEventListener('change',filterAndRender);
-      sort.addEventListener('change',filterAndRender);
-
-      // basic SEO-friendly JSON-LD product list (visible to crawlers)
-      const ld = {"@context":"https://schema.org","@graph":PRODUCTS.map(p=>({
-        "@type":"Product",
-        "name":p.title,
-        "image":[p.img],
-        "description":p.desc,
-        "offers":{"@type":"Offer","price":(p.price/100).toFixed(2),"priceCurrency":"INR","url":p.affiliateUrl}
-      }))};
-      const script = document.createElement('script');
-      script.type='application/ld+json';
-      script.textContent = JSON.stringify(ld);
-      document.head.appendChild(script);
-
-      // register simple service worker for caching (optional) — register only if supported and same origin
-      if('serviceWorker' in navigator){
-        try{navigator.serviceWorker.register('/sw.js').catch(()=>{});
-        }catch(e){}
+        return;
       }
+
+      products.forEach(product => {
+
+        const card = document.createElement("article");
+
+        card.className = "card";
+
+        card.innerHTML = `
+
+          <div class="media">
+            <img
+              loading="lazy"
+              src="${product.img}"
+              alt="${product.title}"
+              onerror="this.src='https://via.placeholder.com/400x300?text=Product'"
+            >
+          </div>
+
+          <div>
+
+            <div class="title">
+              ${product.title}
+            </div>
+
+            <div class="muted" style="margin-top:6px">
+              ${product.desc}
+            </div>
+
+          </div>
+
+          <div class="meta">
+
+            <div>
+              <div class="price">
+                ${formatCurrency(product.price)}
+              </div>
+
+              <div class="muted">
+                ${product.merchant}
+              </div>
+            </div>
+
+            <div class="actions">
+
+              <a
+                class="affiliate-btn"
+                href="${product.affiliateUrl}"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+              >
+                Buy
+              </a>
+
+              <button
+                class="secondary details-btn"
+                type="button"
+                data-id="${product.id}"
+                aria-haspopup="dialog"
+              >
+                Details
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+        grid.appendChild(card);
+
+      });
+
+      document.querySelectorAll(".details-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+          openModal(Number(button.dataset.id));
+        });
+
+      });
+
+    }
+
+
+    /* =========================
+       FILTER / SEARCH / SORT
+    ========================= */
+
+    function filterAndRender() {
+
+      const term = searchInput.value.trim().toLowerCase();
+      const selectedCategory = category.value;
+      const selectedSort = sort.value;
+
+      let list = PRODUCTS.slice();
+
+      if (selectedCategory !== "all") {
+
+        list = list.filter(product =>
+          product.category === selectedCategory
+        );
+
+      }
+
+      if (term) {
+
+        list = list.filter(product => {
+
+          const text =
+            product.title + " " +
+            product.desc + " " +
+            product.merchant;
+
+          return text.toLowerCase().includes(term);
+
+        });
+
+      }
+
+      if (selectedSort === "price_asc") {
+
+        list.sort((a, b) => a.price - b.price);
+
+      }
+
+      if (selectedSort === "price_desc") {
+
+        list.sort((a, b) => b.price - a.price);
+
+      }
+
+      render(list);
+
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    function openModal(id) {
+
+      const product = PRODUCTS.find(
+        item => item.id === id
+      );
+
+      if (!product) return;
+
+      modalContent.innerHTML = `
+
+        <div class="modal-grid">
+
+          <div>
+
+            <img
+              class="modal-image"
+              src="${product.img}"
+              alt="${product.title}"
+              onerror="this.src='https://via.placeholder.com/400x300?text=Product'"
+            >
+
+          </div>
+
+          <div>
+
+            <h2 class="modal-title">
+              ${product.title}
+            </h2>
+
+            <div class="muted">
+              ${product.merchant}
+            </div>
+
+            <div
+              class="price"
+              style="margin-top:10px"
+            >
+              ${formatCurrency(product.price)}
+            </div>
+
+            <p style="margin-top:14px">
+              ${product.desc}
+            </p>
+
+            <div class="modal-actions">
+
+              <a
+                class="affiliate-btn"
+                href="${product.affiliateUrl}"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+              >
+                Buy Now
+              </a>
+
+              <button
+                class="secondary"
+                type="button"
+                id="share-link"
+              >
+                Copy Link
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+
+      const shareButton =
+        document.getElementById("share-link");
+
+      shareButton.addEventListener("click", async () => {
+
+        try {
+
+          await navigator.clipboard.writeText(
+            product.affiliateUrl
+          );
+
+          shareButton.textContent = "Copied!";
+
+          setTimeout(() => {
+            shareButton.textContent = "Copy Link";
+          }, 1500);
+
+        } catch (error) {
+
+          alert("Unable to copy the link.");
+
+        }
+
+      });
+
+    }
+
+
+    function closeModal() {
+
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+
+    }
+
+
+    closeModalBtn.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    modal.addEventListener("click", event => {
+
+      if (event.target === modal) {
+        closeModal();
+      }
+
     });
 
-    // small debounce util
-    function debounce(fn,ms=200){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms)}}
 
-    // Expose a small API for injecting products via CMS or server-side rendering
-    window.Shoping = {
-      setProducts(list){
-        // validate minimal fields
-        window.PRODUCTS = list.map((p,i)=>Object.assign({id:i+1,price:0,img:'https://via.placeholder.com/400x300'},p));
-        filterAndRender();
+    document.addEventListener("keydown", event => {
+
+      if (
+        event.key === "Escape" &&
+        modal.classList.contains("open")
+      ) {
+        closeModal();
       }
-    };
+
+    });
+
+
+    /* =========================
+       DEBOUNCE
+    ========================= */
+
+    function debounce(callback, delay = 250) {
+
+      let timer;
+
+      return function (...args) {
+
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          callback(...args);
+        }, delay);
+
+      };
+
+    }
+
+
+    /* =========================
+       INITIALIZE WEBSITE
+    ========================= */
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      year.textContent =
+        new Date().getFullYear();
+
+      render(PRODUCTS);
+
+      searchInput.addEventListener(
+        "input",
+        debounce(filterAndRender, 250)
+      );
+
+      category.addEventListener(
+        "change",
+        filterAndRender
+      );
+
+      sort.addEventListener(
+        "change",
+        filterAndRender
+      );
+
+
+      /* JSON-LD */
+
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@graph": PRODUCTS.map(product => ({
+
+          "@type": "Product",
+
+          "name": product.title,
+
+          "image": [
+            product.img
+          ],
+
+          "description": product.desc,
+
+          "offers": {
+            "@type": "Offer",
+            "price": product.price.toFixed(2),
+            "priceCurrency": "INR",
+            "url": product.affiliateUrl,
+            "availability":
+              "https://schema.org/InStock"
+          }
+
+        }))
+      };
+
+      const script =
+        document.createElement("script");
+
+      script.type = "application/ld+json";
+
+      script.textContent =
+        JSON.stringify(structuredData);
+
+      document.head.appendChild(script);
+
+    });
+
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
