@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="p:domain_verify" content="cbfe1798a0591bfc7e6fccfea74013d5"/>
-  <title>Vainik Studio Shopping</title>
-  <meta name="description" content="Vainik Studio Shopping.">
-  <meta name="keywords" content="Vainik Studio Shopping, Shopping, shop,">
+  <title>Shoping Website</title>
+  <meta name="description" content="Shoping Website">
+  <meta name="keywords" content="Shoping Website, Shopping, Shop,">
   
-  <link rel="icon" href="Vainik Studio Shoping icon.png" type="image/png">
-<meta name="google-site-verification" content="6_1e4kd9Xm1VpQrcmxA1U0w_Beq9BBltunOw1IWAt6c" />
+  <link rel="icon" href="Shoping Website icon.png" type="image/png">
+
   <!-- Open Graph for social sharing -->
-  <meta property="og:title" content="Vainik Studio Shopping">
-  <meta property="og:description" content="Vainik Studio Shopping.">
+  <meta property="og:title" content="Shoping Website">
+  <meta property="og:description" content="Shoping Website.">
   <meta property="og:type" content="website">
 
   <style>
@@ -89,9 +89,9 @@
   <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">VS</div>
+        <div class="logo">SW</div>
         <div>
-          <h1>Vainik Studio Shopping</h1>
+          <h1>Shoping Website</h1>
           
         </div>
       </div>
@@ -104,7 +104,7 @@
       <div class="hero-grid">
         <div>
           <h2 id="hero-heading">Top deals — handpicked for you</h2>
-          <p class="lead">Vainik Studio Shopping Website Product Click "Buy" to open the retailer page and complete purchase.</p>
+          <p class="lead">Shoping  Website Product Click "Buy" to open the retailer page and complete purchase.</p>
         
         </div>
         
@@ -142,7 +142,7 @@
     </main>
 
     <footer id="about">
-      © <span id="year"></span> Vainik Studio Shopping.
+      © <span id="2026"></span> Shoping Website.
     </footer>
   </div>
 
@@ -158,8 +158,6 @@
     // Sample product data — replace these with your actual affiliate product list
     // Each product should include: id, title, description, price, image, category, affiliateUrl, merchant
      const PRODUCTS = [
-    
-      
       {id:2,title:'Artificial Red Lily Flower for Home Decor  for women',desc:'',price:127,img:'https://images.meesho.com/images/products/519464912/ravc1_512.avif?width=512',category:'women',affiliateUrl:'https://www.meesho.com/af_invite/130369250:instagram_stories:1749917?p_id=519464912&ext_id=8l9xow&utm_source=instagram_stories',merchant:'Prodect 2'},
       {id:3,title:'New & Hit Trendy Flora Planet for women',desc:'',price:146,img:'https://images.meesho.com/images/products/447038782/zlhzt_512.avif?width=512',category:'women',affiliateUrl:'https://www.meesho.com/af_invite/130369250:instagram_stories:1623260?p_id=447038782&ext_id=7e5lby&utm_source=instagram_stories',merchant:'Prodect 3'},
       {id:4,title:'3 pcs beautiful vase for home decor for women',desc:'',price:514,img:'https://images.meesho.com/images/products/431129895/rwoze.jpg',category:'women',affiliateUrl:'https://affiliate.meesho.com/collection/MTQzMTk4ODo6Ojo6Om5vcm1hbA==',merchant:'Prodect 4'},
@@ -317,7 +315,7 @@
     function debounce(fn,ms=200){let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),ms)}}
 
     // Expose a small API for injecting products via CMS or server-side rendering
-    window.Vainik = {
+    window.Shoping = {
       setProducts(list){
         // validate minimal fields
         window.PRODUCTS = list.map((p,i)=>Object.assign({id:i+1,price:0,img:'https://via.placeholder.com/400x300'},p));
