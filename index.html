@@ -75,12 +75,46 @@
     /* small helpers */
     .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:#eef2ff;font-weight:600;color:var(--accent);font-size:0.75rem}
 
-    /* modal */
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.5);backdrop-filter: blur(3px);visibility:hidden;opacity:0;transition:all .18s}
-    .modal.open{visibility:visible;opacity:1}
-    .modal-card{background:white;padding:18px;border-radius:12px;max-width:720px;width:92%}
-    .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:700px){.modal-grid{grid-template-columns:1fr}}
+    /* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.5);
+  backdrop-filter: blur(3px);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+  z-index: 9999;
+}
+
+.modal.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  max-width: 720px;
+  width: 92%;
+  box-sizing: border-box;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
